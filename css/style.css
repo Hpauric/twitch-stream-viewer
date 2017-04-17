@@ -1,0 +1,115 @@
+ /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+ 
+ .row.content {
+   //height: 1200px
+ }
+ /* Set gray background color and 100% height */
+ 
+ .sidenav {
+   background-color: #f1f1f1;
+   height: 100%;
+ }
+ /* Set black background color, white text and some padding */
+ 
+ footer {
+   background-color: #555;
+   color: white;
+   padding: 15px;
+ }
+ /* On small screens, set height to 'auto' for sidenav and grid */
+ 
+ @media screen and (max-width: 1000px) {
+   .sidenav {
+     height: auto;
+     padding: 15px;
+   }
+   .row.content {
+     height: auto;
+   }
+ }
+ 
+ .my-logo {
+   height: 60px;
+ }
+ 
+ a {
+   font-family: 'Kumar One', cursive;
+   color: black;
+ }
+ 
+ .btn-group {
+   width: 100%;
+   margin-bottom: 20px;
+ }
+ 
+.one-third-width {
+width: calc(100% / 3);
+ }
+ 
+ .full-width {
+   width: 100% !important;
+   margin-bottom: 20px;
+ }
+ 
+ h2 {
+   font-size: 3vh;
+   line-height: 30px;
+   height: 30px;
+ }
+ 
+ .my-list {
+   display: inline-block;
+   position: relative;
+ }
+
+.led-green {
+  
+  position: absolute;
+  top: 50%;
+  margin-top: -12px;
+  width: 24px;
+  height: 24px;
+  background-color: #ABFF00;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px, #89FF00 0 2px 12px;
+}
+
+.led-red {
+  position: absolute;
+  top: 50%;
+  margin-top: -12px;
+  width: 24px;
+  height: 24px;
+  background-color: #F00;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 12px;
+
+}
+
+.panel-default {
+  background-color: grey;
+  color: white;
+}
+.panel-default:hover {
+  background-color: white;
+  color: black;
+  border-color: black;
+}
+
+.panel:hover {
+  border-color: black;
+}
+
+#grey-box {
+  width: 620px;
+  height: 196px;
+  background-color: grey;
+}
+
+.row {
+  padding-top: 20px;
+}
+
+h3 {
+  margin-top: 0px;
+}

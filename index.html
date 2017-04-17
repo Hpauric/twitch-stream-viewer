@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Twitch Stream Viewer</title>
+  
+  
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+  <head>
+  <title>Twitch Stream Viewer</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Kumar+One" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="container-fluid">
+
+    <div class="row content">
+      <div class="col-md-4 sidenav text-center">
+        <div class="btn-group">
+          <button id="all-button" type="button" class="btn btn-default one-third-width">All</button>
+          <button id="online-button" type="button" class="btn btn-success one-third-width">Online</button>
+          <button id="offline-button" type="button" class="btn btn-danger one-third-width">Offline</button>
+        </div>
+        <ul class="nav nav-pills nav-stacked">
+          <li class="my-list">
+            <a id="freecodecamp-status-container" class="panel" href="#section3">
+              <h2 id="freecodecamp-header" class="my-list">Free Code Camp</h2>
+              <img id="fcc-logo" class="pull-right my-logo my-list img-responsive"></a>
+          </li>
+          <li>
+            <a id="monstercat-status-container" class="panel" href="#section3">
+              <h2 id="monstercat-header" class="my-list">monstercat</h2>
+              <img id="monstercat-logo" class="pull-right my-logo my-list img-responsive"></a>
+          </li>
+          <li>
+            <a id="kyente-status-container" class="panel" href="#section3">
+              <h2 id="kyente-header" class="my-list">Kyente</h2>
+              <img id="kyente-logo" class="pull-right my-logo my-list img-responsive"></a>
+          </li>
+          <li>
+            <a id="giantwaffle-status-container" class="panel" href="#section3">
+              <h2 id="giantwaffle-header" class="my-list">giantwaffle</h2>
+              <img id="giantwaffle-logo" class="pull-right my-logo my-list img-responsive"></a>
+          </li>
+          <li>
+            <a id="comster404-status-container" class="panel" href="#section2">
+              <h2 id="comster404-header" class="my-list">comster404</h2>
+              <img id="comster404-logo" class="pull-right my-logo my-list img-responsive"></a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-8">
+        <h1 class="text-center">Twitch Stream Viewer</h1>
+        <div class="col-md-3">
+          <h3 id="username-display">Username</h3>
+          <h5><span class="glyphicon glyphicon-user"></span>
+        <span id="followers"></span> followers</h5>
+
+          <h5>Game: <span id="game"></span></h5>
+          <h5>Status: <span id="status"></span></h5>
+          <button id="visit-channel" class="btn">Visit Channel</button>
+          <hr>
+          <h5 id="active-badge"></h5>
+          <h5 id="views"></h5>
+          <img id="stream-preview" class="img-responsive">
+        </div>
+        <div class="col-md-7">
+          <img id="profile-banner" class="img-responsive">
+          <hr>
+          <div id="grey-box" class="img-responsive"></div>
+          <img id="video-banner" class="img-responsive">
+          <div id="video-display" class="embed-responsive embed-responsive-16by9">
+            <iframe frameborder="0" scrolling="no" allowfullscreen="true">
+    </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+
+    <script src="js/index.js"></script>
+
+</body>
+</html>
