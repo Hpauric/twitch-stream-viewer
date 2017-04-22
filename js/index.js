@@ -18,8 +18,6 @@ function getProfilePicture(userName, imageId) {
     success: function(data) {
       $('#' + imageId).attr("src", data.logo);
       $('#' + userName + '-header').text(data.display_name);
-      console.log("success");
-      console.log(data);
     }
   });
 }
@@ -88,7 +86,7 @@ function loadUserLiveStream(userName) {
     showScreenElements();
 
     if ($('#' + userName + '-led').hasClass('led-green')) {
-      var url = 'http://player.twitch.tv/?autoplay=false&channel=' + userName;
+      var url = 'https://player.twitch.tv/?autoplay=false&channel=' + userName;
       var streamUrl = 'https://api.twitch.tv/kraken/streams/' + userName;
       $('iframe').attr('src', url);
       $('#video-banner').css('display', 'none');
