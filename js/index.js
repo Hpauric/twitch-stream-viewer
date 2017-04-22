@@ -1,29 +1,47 @@
 // Functions
 
+/* global $ */
+
+'use strict';
+
 var channelLink;
 
 function getProfilePicture(userName, imageId) {
-  $.getJSON('https://wind-bow.gomix.me/twitch-api/users/' +
-    userName + '?',
-    function(data) {
-      //console.log(data);
+
+  $.ajax({
+    type: 'GET',
+    url: 'https://api.twitch.tv/kraken/users/' +
+      userName + '?',
+    headers: {
+      'Client-ID': '29wzlb5l6xa9y0bczcuwz9qyvkl491'
+    },
+    success: function(data) {
       $('#' + imageId).attr("src", data.logo);
       $('#' + userName + '-header').text(data.display_name);
-    });
+      console.log("success");
+      console.log(data);
+    }
+  });
 }
 
 function loadUserDetails(userName) {
-  $.getJSON('https://wind-bow.gomix.me/twitch-api/channels/' +
-    userName + '?',
-    function(data) {
-      //console.log(data.url);
+
+  $.ajax({
+    type: 'GET',
+    url: 'https://api.twitch.tv/kraken/channels/' +
+      userName + '?',
+    headers: {
+      'Client-ID': '29wzlb5l6xa9y0bczcuwz9qyvkl491'
+    },
+    success: function(data) {
       $('#video-banner').attr("src", data.video_banner);
       $('#profile-banner').attr("src", data.profile_banner);
       $('#followers').text(data.followers);
       $('#game').text(data.game);
       $('#status').text(data.status);
-    channelLink = data.url;
-    });
+      channelLink = data.url;
+    }
+  });
 
   if ($('#' + userName + '-led').hasClass('led-green')) {
     $('#active-badge').html('<span class="label label-success">Active</span>');
@@ -52,33 +70,41 @@ function checkIfUserAvailableScreen(userName) {
   } else return true;
 }
 
-function showScreenElements(){
+function showScreenElements() {
   $('#video-banner').show();
-    $('#video-display').show();
-    $('#stream-preview').show();
-    $('#views').show();
-    $('#profile-banner').show();
-    $('#followers').show();
-    $('#game').show();
-    $('#status').show();
+  $('#video-display').show();
+  $('#stream-preview').show();
+  $('#views').show();
+  $('#profile-banner').show();
+  $('#followers').show();
+  $('#game').show();
+  $('#status').show();
   $('#visit-channel').show();
 }
 
-
 function loadUserLiveStream(userName) {
   $('#username-display').text(userName);
-  if (checkIfUserAvailableScreen(userName)) { 
+  if (checkIfUserAvailableScreen(userName)) {
     showScreenElements();
+
     if ($('#' + userName + '-led').hasClass('led-green')) {
       var url = 'http://player.twitch.tv/?autoplay=false&channel=' + userName;
-      var streamUrl = 'https://wind-bow.gomix.me/twitch-api/streams/' + userName;
+      var streamUrl = 'https://api.twitch.tv/kraken/streams/' + userName;
       $('iframe').attr('src', url);
       $('#video-banner').css('display', 'none');
       $('#grey-box').hide();
       $('#video-display').css('display', 'block');
-      $.getJSON(streamUrl, function(data) {
-        $('#stream-preview').attr('src', data.stream.preview.medium);
-        $('#views').html('<h5 id="views">Viewers: ' + data.stream.viewers + '</h5>');
+
+      $.ajax({
+        type: 'GET',
+        url: streamURL,
+        headers: {
+          'Client-ID': '29wzlb5l6xa9y0bczcuwz9qyvkl491'
+        },
+        success: function(data) {
+          $('#stream-preview').attr('src', data.stream.preview.medium);
+          $('#views').html('<h5 id="views">Viewers: ' + data.stream.viewers + '</h5>');
+        }
       });
     } else {
       $('#grey-box').hide();
@@ -92,11 +118,9 @@ function loadUserLiveStream(userName) {
 
 function getAllProfilePictures() {
   getProfilePicture('freecodecamp', 'fcc-logo');
-  getProfilePicture('comster404', 'comster404-logo');
   getProfilePicture('kyente', 'kyente-logo');
   getProfilePicture('monstercat', 'monstercat-logo');
   getProfilePicture('giantwaffle', 'giantwaffle-logo');
-  getProfilePicture('c9sneaky', 'c9sneaky-logo');
 }
 
 getAllProfilePictures();
@@ -105,33 +129,43 @@ function checkIfActive(userName) {
   var elementSelector = '#' + userName + '-status-container';
   var htmlTextGreenLed = '<div id="' + userName + '-led"class="led-green pull-left"></div>';
   var htmlTextRedLed = '<div id="' + userName + '-led" class="led-red pull-left"></div>';
-  var streamHtml = 'https://wind-bow.gomix.me/twitch-api/streams/' + userName + '?';
-  var channelHtml = 'https://wind-bow.gomix.me/twitch-api/channels/' + userName + '?';
+  var streamHtml = 'https://api.twitch.tv/kraken/streams/' + userName + '?';
+  var channelHtml = 'https://api.twitch.tv/kraken/channels/' + userName + '?';
 
-  $.getJSON(channelHtml, function(data) {
-    if (data.error !== undefined) {
-      $(elementSelector).addClass('panel-default');
-    } else {
-      $.getJSON(streamHtml, function(data) {
-        if (data.stream !== null) {
-          $(elementSelector).append(htmlTextGreenLed);
-        } else {
-          $(elementSelector).append(htmlTextRedLed);
-        }
-      });
+  $.ajax({
+    type: 'GET',
+    url: channelHtml,
+    headers: {
+      'Client-ID': '29wzlb5l6xa9y0bczcuwz9qyvkl491'
+    },
+    success: function(data) {
+      if (data.error !== undefined) {
+        $(elementSelector).addClass('panel-default');
+      } else {
+        $.ajax({
+          type: 'GET',
+          url: streamHtml,
+          headers: {
+            'Client-ID': '29wzlb5l6xa9y0bczcuwz9qyvkl491'
+          },
+          success: function(data) {
+            if (data.stream !== null) {
+              $(elementSelector).append(htmlTextGreenLed);
+            } else {
+              $(elementSelector).append(htmlTextRedLed);
+            }
+          }
+        });
+      }
     }
   });
 }
 
 function checkIfProfilesActive() {
   checkIfActive('freecodecamp');
-  checkIfActive('comster404');
-  checkIfActive('kyente');
   checkIfActive('monstercat');
+  checkIfActive('kyente');
   checkIfActive('giantwaffle');
-  checkIfActive('c9sneaky');
-
-  checkIfActive('ESL_SC2');
 }
 
 checkIfProfilesActive();
@@ -154,7 +188,6 @@ $('#visit-channel').click(function() {
   window.open(channelLink);
 });
 
-
 $('#all-button').click(function() {
   $('.panel').show();
 });
@@ -162,43 +195,31 @@ $('#all-button').click(function() {
 $('#online-button').click(function() {
   $('.panel').show();
   displayOnlyOnlineUser('freecodecamp');
-  displayOnlyOnlineUser('comster404');
-  displayOnlyOnlineUser('kyente');
   displayOnlyOnlineUser('monstercat');
+  displayOnlyOnlineUser('kyente');
   displayOnlyOnlineUser('giantwaffle');
-  displayOnlyOnlineUser('c9sneaky');
 });
 
 $('#offline-button').click(function() {
   $('.panel').show();
   displayOnlyOfflineUser('freecodecamp');
-  displayOnlyOfflineUser('comster404');
-  displayOnlyOfflineUser('kyente');
   displayOnlyOfflineUser('monstercat');
+  displayOnlyOfflineUser('kyente');
   displayOnlyOfflineUser('giantwaffle');
-  displayOnlyOfflineUser('c9sneaky');
 });
 
 $('#' + 'freecodecamp-status-container').click(function() {
   loadUserDetails('freecodecamp');
 });
 
-$('#' + 'comster404-status-container').click(function() {
-  loadUserDetails('comster404');
+$('#' + 'monstercat-status-container').click(function() {
+  loadUserDetails('monstercat');
 });
 
 $('#' + 'kyente-status-container').click(function() {
   loadUserDetails('kyente');
 });
 
-$('#' + 'monstercat-status-container').click(function() {
-  loadUserDetails('monstercat');
-});
-
 $('#' + 'giantwaffle-status-container').click(function() {
   loadUserDetails('giantwaffle');
-});
-
-$('#' + 'c9sneaky-status-container').click(function() {
-  loadUserDetails('c9sneaky');
 });
