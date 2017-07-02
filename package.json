@@ -1,0 +1,19 @@
+{
+  "name": "twitch-stream-viewer",
+  "version": "1.0.0",
+  "description": "A Pen created at CodePen.io. You can find this one at http://codepen.io/pauric101/pen/WoBNLE.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hpauric/twitch-stream-viewer.git"
+  },
+  "author": "Pauric Holleran",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hpauric/twitch-stream-viewer/issues"
+  },
+  "homepage": "https://github.com/Hpauric/twitch-stream-viewer#readme"
+}
