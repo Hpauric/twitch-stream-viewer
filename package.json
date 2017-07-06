@@ -4,6 +4,7 @@
   "description": "A Pen created at CodePen.io. You can find this one at http://codepen.io/pauric101/pen/WoBNLE.",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/Hpauric/twitch-stream-viewer/issues"
   },
-  "homepage": "https://github.com/Hpauric/twitch-stream-viewer#readme"
+  "homepage": "https://github.com/Hpauric/twitch-stream-viewer#readme",
+  "dependencies": {
+    "es6-promise": "^4.1.1",
+    "express": "^4.15.3",
+    "isomorphic-fetch": "^2.2.1",
+    "path": "^0.12.7"
+  }
 }

@@ -9,27 +9,24 @@ var channelLink;
 function getProfilePicture(userName, imageId) {
 
   $.ajax({
-    type: 'GET',
-    url: 'https://api.twitch.tv/kraken/users/' +
-      userName + '?',
-    headers: {
-      'Client-ID': '29wzlb5l6xa9y0bczcuwz9qyvkl491'
+    url: '/profile-picture',
+     data: {
+      userName: userName,
     },
     success: function(data) {
       $('#' + imageId).attr("src", data.logo);
       $('#' + userName + '-header').text(data.display_name);
     }
   });
+  
 }
 
 function loadUserDetails(userName) {
 
   $.ajax({
-    type: 'GET',
-    url: 'https://api.twitch.tv/kraken/channels/' +
-      userName + '?',
-    headers: {
-      'Client-ID': '29wzlb5l6xa9y0bczcuwz9qyvkl491'
+    url: '/user-details',
+     data: {
+      userName: userName,
     },
     success: function(data) {
       $('#video-banner').attr("src", data.video_banner);
