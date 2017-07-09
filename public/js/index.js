@@ -122,8 +122,8 @@ getAllProfilePictures();
 
 function checkIfActive(userName) {
   var elementSelector = '#' + userName + '-status-container';
-  var htmlTextGreenLed = '<div id="' + userName + '-led"class="led-green pull-left"></div>';
-  var htmlTextRedLed = '<div id="' + userName + '-led" class="led-red pull-left"></div>';
+  var htmlTextGreenLed = '<div id="' + userName + '-led"class="led-green"></div>';
+  var htmlTextRedLed = '<div id="' + userName + '-led" class="led-red"></div>';
   var streamHtml = 'https://api.twitch.tv/kraken/streams/' + userName + '?';
   var channelHtml = 'https://api.twitch.tv/kraken/channels/' + userName + '?';
 
@@ -145,9 +145,9 @@ function checkIfActive(userName) {
           },
           success: function(data) {
             if (data.stream !== null) {
-              $(elementSelector).append(htmlTextGreenLed);
+              $(elementSelector).prepend(htmlTextGreenLed);
             } else {
-              $(elementSelector).append(htmlTextRedLed);
+              $(elementSelector).prepend(htmlTextRedLed);
             }
           }
         });

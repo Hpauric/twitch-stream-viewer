@@ -52,7 +52,7 @@ width: calc(100% / 3);
  }
  
  h2 {
-   font-size: 3vh;
+   font-size: 16px;
    line-height: 30px;
    height: 30px;
  }
@@ -64,9 +64,8 @@ width: calc(100% / 3);
 
 .led-green {
   
-  position: absolute;
-  top: 50%;
-  margin-top: -12px;
+
+  margin: auto 0;
   width: 24px;
   height: 24px;
   background-color: #ABFF00;
@@ -75,15 +74,19 @@ width: calc(100% / 3);
 }
 
 .led-red {
-  position: absolute;
-  top: 50%;
-  margin-top: -12px;
+  margin: auto 0;
   width: 24px;
   height: 24px;
   background-color: #F00;
   border-radius: 50%;
   box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 12px;
 
+}
+
+.panel {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .panel-default {
